@@ -1,38 +1,65 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+nav {
+  background: gray;
+  color: white;
+  height: 5vh;
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  text-align: center;
+  padding-top: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+a {
+  /* text-decoration: none; */
+  color: black;
+}
+
+.dashboard {
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 15vh;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.register {
+  padding: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login {
+  padding: 2rem;
+}
+
+.userLogged {
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h1 {
+  padding-bottom: 1rem;
+}
+
+.loadHotel {
+  margin-top: 10rem;
+  margin-bottom: 5rem;
+}
+
+.hotel {
+  background: gray;
+  margin-bottom: 2rem;
 }
