@@ -13,7 +13,7 @@ const Hotel = ({ recipe, recipes, setFavorites, favorites }) => {
     <div>
       <div className="hotel">
         <h1>Currency Name: {recipe.name}</h1>
-        <h2>Currency Price: {recipe.current_price}</h2>
+        <h2>Currency Price: ${recipe.current_price.toLocaleString()}</h2>
         <button onClick={addToFavs}>Add to favorites</button>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import FavoriteCrypto from "./FavoriteCrypto";
 import { v4 as uuidv4 } from "uuid";
@@ -10,6 +10,26 @@ const Favorites = ({
   setRecipes,
   logout,
 }) => {
+  const getLocalFavorite = () => {
+    if (localStorage.getItem("favorites") === null) {
+      localStorage.setItem("favorites", JSON.stringify([]));
+    } else {
+      let favoriteLocal = JSON.parse(localStorage.getItem("favorites"));
+      setFavorites(favoriteLocal);
+    }
+  };
+
+  const saveLocalFavorite = () => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  };
+
+  useEffect(() => {
+    getLocalFavorite();
+  }, []);
+
+  useEffect(() => {
+    saveLocalFavorite();
+  }, [favorites]);
   return (
     <div>
       <nav className="nav">
@@ -38,6 +58,7 @@ const Favorites = ({
           favorites={favorites}
           favorite={favorite}
           key={uuidv4()}
+          id={uuidv4()}
           setFavorites={setFavorites}
         />
       ))}

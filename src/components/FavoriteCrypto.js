@@ -1,13 +1,6 @@
 import React from "react";
 
-const favoriteCrypto = ({
-  favorites,
-  setFavorites,
-  recipes,
-  setRecipes,
-  logout,
-  favorite,
-}) => {
+const favoriteCrypto = ({ favorites, setFavorites, favorite }) => {
   const deleteCrypto = () => {
     setFavorites(favorites.filter((el) => el.id !== favorite.id));
   };

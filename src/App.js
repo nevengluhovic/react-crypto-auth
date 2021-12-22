@@ -65,6 +65,27 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [recipes, setRecipes] = useState([]);
 
+  const getLocalCrypto = () => {
+    if (localStorage.getItem("crypto") === null) {
+      localStorage.setItem("crypto", JSON.stringify([]));
+    } else {
+      let cryptoLocal = JSON.parse(localStorage.getItem("crypto"));
+      setRecipes(cryptoLocal);
+    }
+  };
+
+  const saveLocalCrypto = () => {
+    localStorage.setItem("crypto", JSON.stringify(recipes));
+  };
+
+  useEffect(() => {
+    getLocalCrypto();
+  }, []);
+
+  useEffect(() => {
+    saveLocalCrypto();
+  }, [recipes]);
+
   return (
     <Router>
       <Routes>
