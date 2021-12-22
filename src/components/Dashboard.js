@@ -6,7 +6,11 @@ import axios, * as others from "axios";
 import Hotel from "./Hotel";
 import { v4 as uuidv4 } from "uuid";
 
-const Dashboard = () => {
+const Dashboard = ({ favorites, setFavorites, recipes, setRecipes }) => {
+  useEffect(() => {
+    console.log(favorites);
+  }, [favorites]);
+
   const logout = async () => {
     await signOut(auth);
   };
@@ -14,7 +18,6 @@ const Dashboard = () => {
   const APP_ID = "b400f998";
   const APP_KEY = "d91b5e2b3b918422f7efbf17ca6894c4";
 
-  const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchHotels = async () => {
@@ -30,11 +33,6 @@ const Dashboard = () => {
     }
   };
 
-  // console.log(recipes);
-
-  // useEffect(() => {
-  //   fetchHotels();
-  // }, []);
   if (!loading) {
     return (
       <div>
@@ -44,7 +42,7 @@ const Dashboard = () => {
               <Link to="/dashboard">Dashboard</Link>
             </li>
             <li>
-              <Link to="/favourites">Favourites</Link>
+              <Link to="/favorites">Favourites ({favorites.length})</Link>
             </li>
             <li>
               <button onClick={logout}>Logout</button>
@@ -54,7 +52,7 @@ const Dashboard = () => {
         <div className="dashboard">
           <h1>Welcome to Dashboard, you're logged in!</h1>
           <Link to="/">
-            <p>Go back to the main page</p>
+            <p>Go back to the login page</p>
           </Link>
         </div>
         <button onClick={fetchHotels} className="loadHotel">
@@ -63,9 +61,10 @@ const Dashboard = () => {
         {recipes.map((recipe) => (
           <Hotel
             key={uuidv4()}
-            id={uuidv4()}
             recipes={recipes}
             recipe={recipe}
+            favorites={favorites}
+            setFavorites={setFavorites}
           />
         ))}
       </div>

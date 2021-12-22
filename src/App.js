@@ -17,7 +17,7 @@ import {
 } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
-// import Nav from "./components/Nav";
+import Favorites from "./components/Favorites";
 
 function App() {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -62,6 +62,8 @@ function App() {
   const logout = async () => {
     await signOut(auth);
   };
+  const [favorites, setFavorites] = useState([]);
+  const [recipes, setRecipes] = useState([]);
 
   return (
     <Router>
@@ -122,7 +124,33 @@ function App() {
           }
         />
         <Route element={<ProtectedRoute user={user} />}>
-          <Route logout={logout} path="/dashboard" element={<Dashboard />} />
+          <Route
+            logout={logout}
+            path="/dashboard"
+            element={
+              <Dashboard
+                recipes={recipes}
+                setRecipes={setRecipes}
+                favorites={favorites}
+                setFavorites={setFavorites}
+              />
+            }
+          />
+        </Route>
+        <Route element={<ProtectedRoute user={user} />}>
+          <Route
+            path="/favorites"
+            element={
+              <Favorites
+                path="/favorites"
+                recipes={recipes}
+                setRecipes={setRecipes}
+                favorites={favorites}
+                setFavorites={setFavorites}
+                logout={logout}
+              />
+            }
+          />
         </Route>
         {/* <Route element={<ProtectedRoute />}>
           <Route path="/nav" element={<Nav />} />

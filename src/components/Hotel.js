@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
-const Hotel = ({ recipe, recipes, id }) => {
-  const [favorites, setFavorites] = useState([]);
-  const filteredRecipes = recipes.filter((el) => el.name === recipe.name);
+const Hotel = ({ recipe, recipes, setFavorites, favorites }) => {
+  // const filteredRecipes = recipes.filter((el) => el.name === recipe.name);
+  // const filteredRecipes = [recipe];
 
   const addToFavs = () => {
-    setFavorites((oldfavorites) => [...oldfavorites, filteredRecipes]);
+    setFavorites((oldFavorites) => [...oldFavorites, recipe]);
   };
 
-  useEffect(() => {
-    console.log(favorites);
-  }, [filteredRecipes]);
   return (
     <div>
       <div className="hotel">
