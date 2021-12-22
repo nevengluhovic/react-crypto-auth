@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 
 const Hotel = ({ recipe, recipes, id }) => {
   const [favorites, setFavorites] = useState([]);
-  const filteredRecipes = recipes.filter((el) => el.id === recipe.id);
+  const filteredRecipes = recipes.filter((el) => el.name === recipe.name);
 
   const addToFavs = () => {
-    setFavorites(...favorites, filteredRecipes);
+    setFavorites((oldfavorites) => [...oldfavorites, filteredRecipes]);
   };
 
   useEffect(() => {
     console.log(favorites);
-  }, [favorites]);
+  }, [filteredRecipes]);
   return (
     <div>
       <div className="hotel">
